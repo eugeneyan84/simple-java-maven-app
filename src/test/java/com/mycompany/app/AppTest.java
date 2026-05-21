@@ -1,8 +1,5 @@
 package com.mycompany.app;
 
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -30,18 +27,13 @@ public class AppTest
     @Test
     public void testTimestamp() {
         App app = new App();
-        Date currentDate = new Date();
+        Date expectedDate = new Date();
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE MMM dd HH:mm:ss 'GMT'XXX yyyy");
-        
-        // 1. Parse to LocalDateTime
-        LocalDateTime localDateTime = LocalDateTime.parse(app.getCurrentTimestamp(), formatter);
-        
-        // 2. Convert to java.util.Date (if necessary)
-        Date date1 = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+        Date actualDate = Date.from(app.getCurrentTimestamp());
+        //Instant i = expectedDate.toInstant();
+        System.out.println("Expected: "+expectedDate.toString());
+        System.out.println("Actual:   "+actualDate.toString());
 
-        System.out.println("Expected: "+currentDate.getTime());
-        System.out.println("Actual:   "+date1.getTime());
-        assertEquals(currentDate.getTime(), date1.getTime(), 1000.0);
+        assertEquals(expectedDate.toString(), actualDate.toString());
     }
 }
