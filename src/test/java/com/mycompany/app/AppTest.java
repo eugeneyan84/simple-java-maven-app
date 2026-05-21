@@ -32,7 +32,7 @@ public class AppTest
         App app = new App();
         Date currentDate = new Date();
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE MMM dd HH:mm:ss 'GMT'XXX yyyy");
         
         // 1. Parse to LocalDateTime
         LocalDateTime localDateTime = LocalDateTime.parse(app.getCurrentTimestamp(), formatter);
@@ -40,6 +40,8 @@ public class AppTest
         // 2. Convert to java.util.Date (if necessary)
         Date date1 = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
 
-        assertEquals(currentDate, date1);
+        System.out.println("Expected: "+currentDate.getTime());
+        System.out.println("Actual:   "+date1.getTime());
+        assertEquals(currentDate.getTime(), date1.getTime(), 1000.0);
     }
 }

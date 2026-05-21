@@ -1,6 +1,6 @@
 package com.mycompany.app;
 
-import java.time.Instant;
+import java.util.Date;
 
 /**
  * Hello world!
@@ -20,7 +20,6 @@ public class App {
     }
 
     public String getCurrentTimestamp() {
-        Instant timestamp = Instant.now();
-        return timestamp.toString();
+        return (new Date()).toString();
     }
 }
