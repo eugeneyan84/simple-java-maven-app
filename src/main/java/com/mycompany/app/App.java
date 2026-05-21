@@ -21,6 +21,6 @@ public class App {
 
     public String getCurrentTimestamp() {
         Instant timestamp = Instant.now();
-        return timestamp;
+        return timestamp.toString();
     }
 }
