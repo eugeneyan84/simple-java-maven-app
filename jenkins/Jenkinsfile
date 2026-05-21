@@ -26,7 +26,7 @@ pipeline {
         }
         stage("Notify") {
             steps {
-                sh 'End of delivery.'
+                echo 'End of delivery.'
             }
         }
     }
