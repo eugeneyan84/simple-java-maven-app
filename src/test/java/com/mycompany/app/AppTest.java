@@ -3,6 +3,9 @@ package com.mycompany.app;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 
 /**
  * Unit test for simple App.
@@ -21,5 +24,21 @@ public class AppTest
     {
         App app = new App();
         assertEquals("Hello World!", app.getMessage());
+    }
+
+    @Test
+    public void testTimestamp() {
+        App app = new App();
+        Date currentDate = new Date();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        
+        // 1. Parse to LocalDateTime
+        LocalDateTime localDateTime = LocalDateTime.parse(app.getCurrentTimestamp(), formatter);
+        
+        // 2. Convert to java.util.Date (if necessary)
+        Date date1 = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+
+        assertEquals(currentDate, date1);
     }
 }
